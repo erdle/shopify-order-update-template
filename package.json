@@ -1,0 +1,26 @@
+{
+  "name": "tutorial4",
+  "version": "1.0.0",
+  "main": "web/index.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "shopify": "shopify",
+    "build": "shopify app build",
+    "dev": "shopify app dev",
+    "info": "shopify app info",
+    "scaffold": "shopify app scaffold",
+    "deploy": "shopify app deploy"
+  },
+  "dependencies": {
+    "@shopify/app": "3.4.0",
+    "@shopify/cli": "3.4.0",
+    "cors": "^2.8.5",
+    "mongoose": "^6.5.3",
+    "theme-check": "^0.0.1-security"
+  },
+  "author": "dreamworld",
+  "devDependencies": {
+    "@shopify/prettier-plugin-liquid": "^0.2.1",
+    "prettier": "^2.7.1"
+  }
+}

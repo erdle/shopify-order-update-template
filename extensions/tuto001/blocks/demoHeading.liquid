@@ -1,0 +1,218 @@
+{% style %}
+.demoRichText{
+    background: {{ block.settings.background-colorText }};
+    padding: {{ block.settings.rangeText }}px;
+}
+
+.showCheckbox{
+    {% if block.settings.checkboxShow == true %}
+    display: block;
+    {% else %}
+    display: none;
+
+    {% endif %}
+}
+{% endstyle %}
+
+{{ 'new.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'widgit.js' | asset_url }}" defer="defer"></script>
+<img width="100" height="100" loading="lazy" src={{ 'mob.jpg' | file_url }} alt="werty"/>
+{{ 'Log in' | customer_login_link }}
+<div class="demoBlock ">
+    <p class="text-center">Checking bootstrap</p>
+    <p class="showCheckbox"> Hello from checkbox </p>
+    <h1 class="{{ block.settings.demoselector }} text-center demoRichText " style="color: {{ block.settings.colorText }};" >
+        {{ block.settings.heading }}
+    </h1>
+
+    {% if block.settings.radioShow %}
+    <p class="text-center radioShow">Value is {{ block.settings.radioShow }}</p>
+    {% endif %}
+</br>
+    {% if block.settings.description %}
+    {{ block.settings.description }}
+    {% endif %}
+
+    {% liquid
+    if block.settings.html
+        echo block.settings.html 
+    endif
+    
+        if block.settings.link_list
+        echo block.settings.link_list
+    
+        assign socialLinks =  block.settings.link_list 
+        endif
+    %}
+    <div> 
+    <p> social links are {{ socialLinks.links | map: "title" | join: "," }} </p>
+    <p> social links are {{ socialLinks.links | map: "title" | reverse | join: "," }} </p>
+   
+    </div>
+</br>
+<div>
+    {% paginate collection.products by 2 %}
+  {% for product in collection.products %}
+    {{- product.title }} product card </br>
+  {% endfor %}
+
+  {{- paginate | default_pagination -}}
+{% endpaginate %}
+{% if block.settings.product_list %}
+    {% for list in block.settings.product_list %}
+        <p> {{ list.title }} </p>
+        <p> {{ list.links }} </p>
+        {% endfor %}
+    {% endif %}
+
+    {% form 'currency' %}
+        {{ form | currency_selector }}
+    {% endform %}
+    {% form 'product' , product %}
+        {{ product.description }}
+           {% if form.errors %}
+        {{ form.errors | default_errors }}
+      {% endif %}
+    {% endform %}
+
+ 
+ 
+   
+        <p>    {{ line_item.line_price }}</p>
+      
+      
+    <h5>List of collections</h5>
+        {% for collection in collections %}
+           <p> {{ collection.title }}</p>
+            
+        {% endfor %}
+     
+        {% for variant in product.variants %}
+<h3> {{ variant.product.id }} </h3>
+  {% endfor %}
+  <h3>{{ tax_line.title }}</h3>
+  <select name="country" >
+    {{ all_country_option_tags }}
+  </select>
+</div>
+    {% comment %} {% liquid
+        if block.settings.product_list
+            for list in block.settings.product_list
+                echo list.title | join: ","
+            endfor
+
+            echo block.settings.product_list | map: "price"
+
+        endif
+    %} {% endcomment %}
+</div>
+<div>
+  <p>All product count</p>
+  {{ collection.all_products_count }}
+</div>
+
+{% form 'product', product %}
+<input type="submit" value="Add to cart">
+<input type="text" name="quantity" min="1" value="1">
+{% endform %}
+{% schema %}
+{
+  "name": "Demo Heading",
+  "target": "section",
+  "stylesheet": "app.css",
+  "javascript": "app.js",
+  "settings": [
+    {
+      "label": "Heading",
+      "id": "heading",
+      "type": "richtext",
+      "default": "<p>Hello from Heading</p>"
+    },
+    {
+      "label": "Selector",
+      "id": "demoselector",
+      "type": "select",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Large"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "colorText",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color_background",
+      "id": "background-colorText",
+      "label": "Background"
+    },
+    {
+      "type": "range",
+      "id": "rangeText",
+      "label": "Adjust Padding",
+      "min": 0,
+      "max": 20,
+      "default": 10,
+      "step": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "checkboxShow",
+      "label": "Show Text"
+    },
+    {
+      "type": "radio",
+      "id": "radioShow",
+      "label": "label radio",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "Yes"
+        },
+        {
+          "label": "No",
+          "value": "No"
+        }
+      ]
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "info": "Enter your description"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "video Url",
+      "accept": [
+        "youtube"
+      ]
+    },
+    {
+      "type": "html",
+      "id": "html",
+      "label": "Embed Url"
+    },
+    {
+      "type": "link_list",
+      "id": "link_list",
+      "label": "Menu"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "product List"
+    }
+  ]
+}
+{% endschema %}

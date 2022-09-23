@@ -1,0 +1,83 @@
+
+.resourceData{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.description{
+    width: 40%;
+    overflow: hidden;
+    height: 5rem;
+}
+@media screen and (max-width: 768px) {
+    .card1{
+        width: 100% !important;
+    }
+}
+.Polaris-IndexTable__TableCell > img:hover, .Polaris-DataTable__Cell > svg:hover{
+    cursor: pointer;
+}
+.Polaris-DataTable__Cell > img, .Polaris-DataTable__Cell > svg{
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+}
+.choiceRed{
+    background-color: red;
+    width: 70px!important;
+    height: 30px !important;
+}
+.choiceGreen{
+    background-color: green;
+    width: 70px!important;
+    height: 30px !important;
+
+}
+.choiceOrange{
+    background-color: orange;
+    width: 70px!important;
+    height: 30px !important;
+
+}
+.Polaris-ChoiceList__Choices{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.emptyField{
+    height: 25px !important;
+    width: 100% !important;
+}
+.Polaris-DataTable__Cell > img{
+   width: 3rem!important;
+   height: 3rem!important;
+}
+.Polaris-Spinner{
+    display:  flex !important;
+    width: 100% !important;
+    height: 100% !important;
+    justify-content: center!important;
+    align-items: center!important;
+}
+.colorBox{
+    border:0.5px solid rgb(197, 184, 184);
+    
+    border-radius: 3px;
+    padding: 7px 15px;
+    width: 30%;
+}
+.Polaris-Button__Text > svg{
+ width: 1rem !important;
+ height: 1rem !important;
+}
+.Polaris-Card{
+    padding-top: 5px !important;
+}
+.Polaris-Card > div > div > nav {
+    margin-bottom: 1rem !important;
+}
+.updateAppEmbedImage{
+    width: 200px !important;
+    height: 200px !important;
+}

@@ -1,0 +1,35 @@
+<div style="position: fixed;  " class="WidgitApp" id="WidgitApp" >
+    <img id="WidgitImage" src=""  alt="WidgitImage" loading="lazy" width="100" height="100"/>
+</div>
+{% schema %}
+  {
+    "name": "App Embed",
+    "target": "body",
+    "settings": [
+    {
+        "type": "image_picker",
+        "id":"demoimage",
+        "label":"Select Image"
+    },{
+      "type": "select",
+      "id": "demoselector",
+      "label": "Select position",
+      "options": [
+      {
+        "label": "Top-Right",
+        "value": "top: 0; right: 0"
+      },{
+        "label": "Bottom-Right",
+        "value": "bottom: 0; right: 0"
+      },{
+        "label": "Bottom-Left",
+        "value": "bottom: 0; left: 0"
+      },{
+        "label": "Top-Left",
+        "value": "top: 0; left: 0"
+      }
+      ]
+    }
+    ]
+  }
+{% endschema %}

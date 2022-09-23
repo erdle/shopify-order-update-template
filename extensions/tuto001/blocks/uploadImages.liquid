@@ -1,0 +1,69 @@
+<span span style = "color:  {{ block.settings.color }}" >
+     App blocks let you build powerful integrations with online store themes !
+</span>
+    {{ block.settings.image_selector | image_url: height: 500 | image_tag:
+        loading: 'lazy',
+        width: "150",
+        height: "150",
+        alt: "asdasd" | escape
+      }}
+
+{% assign fruits = "orange, apple, , peach, apple" | split: ',' %}
+{% capture capture_var %}Capture tag example{% endcapture %}
+{{ capture_var }}
+    <div>
+        <table>
+            {% tablerow product in collection.products %}
+                {{ product.title }}
+            {% endtablerow %}
+        </table>
+    </div>
+{% for xyz in fruits %}
+{% unless xyz == blank -%}
+    <div>
+        <h5> 
+            {% cycle 'qwer', 'sdf', 'uip' %}
+            {{ xyz }} </br>
+        </h5>
+    </div>
+   
+    {%- endunless -%}
+{% endfor %}
+
+
+<h5>Increment</h5>
+{% increment incr %}
+
+{% increment incr %}
+
+{% increment incr %}
+{% increment incr %}
+{% increment incr %}
+{% increment incr %}
+<h5>Decrement</h5>
+
+{% decrement incr %}
+{% decrement incr %}
+{% decrement incr %}
+
+
+{% schema %}
+{
+    "name": "Hello World",
+    "target": "section",
+    "stylesheet": "app.css",
+    "javascript": "app.js",
+    "settings": [
+        {
+            "label": "Color",
+            "id": "color",
+            "type": "color",
+            "default": "#000000"
+        }, {
+            "label": "Image Selector",
+            "id": "image_selector",
+            "type": "image_picker"
+        }
+    ]
+}
+{% endschema %}
